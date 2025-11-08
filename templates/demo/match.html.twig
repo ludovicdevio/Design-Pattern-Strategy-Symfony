@@ -1,0 +1,98 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo avec Expression Match (PHP 8+){% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>🔄 Démo avec Expression Match (PHP 8+)</h1>
+    
+    {{ include('demo/_navigation.html.twig') }}
+    
+    <div class="method-info">
+        <h3>🔄 Approche moderne avec Expression Match</h3>
+        <p><strong>Méthode utilisée :</strong> {{ method }} (PHP 8+)</p>
+        <p>Cette approche utilise l'expression <code>match</code> de PHP 8+ pour une syntaxe plus moderne :</p>
+        <div class="code-example">
+return match (strtolower($cereal)) {
+    'ble' => $this->analyserBle($cereal),
+    'orge' => $this->analyserOrge($cereal),
+    'tournesol' => $this->analyserTournesol($cereal),
+    default => throw new InvalidArgumentException(...),
+};
+        </div>
+        
+        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #6c757d;">
+            <h4 style="color: #495057; margin-bottom: 10px;">📁 Code Source</h4>
+            <p style="color: #6c757d; margin-bottom: 10px;">Consultez le code complet sur GitHub :</p>
+            <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Match/CerealAnalyseMatchService.php" 
+               target="_blank" 
+               style="color: #007bff; text-decoration: none; font-weight: bold;">
+                🔗 CerealAnalyseMatchService.php
+            </a>
+        </div>
+    </div>
+
+    {% for analysis in analyses %}
+        <div class="cereal-card">
+            <div class="cereal-name">{{ analysis.cereal }}</div>
+            
+            {% if analysis.success %}
+                <div class="analysis-result match">
+                    <strong>Résultat de l'analyse :</strong><br>
+                    {{ analysis.analyse }}
+                </div>
+            {% else %}
+                <div class="error">
+                    <strong>Erreur :</strong> {{ analysis.error }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="match-advantages-section">
+        <h3>⚠️ Avantages et Inconvénients de Match</h3>
+        
+        <h4>✅ Avantages de l'expression Match :</h4>
+        <ul>
+            <li><strong>Syntaxe moderne :</strong> Plus lisible que les if/else</li>
+            <li><strong>Expression :</strong> Retourne directement une valeur</li>
+            <li><strong>Exhaustivité :</strong> Garantit qu'on couvre tous les cas</li>
+            <li><strong>Performance :</strong> Optimisée par PHP</li>
+        </ul>
+        
+        <h4>❌ Inconvénients de l'expression Match :</h4>
+        <ul>
+            <li><strong>Violation du principe ouvert/fermé :</strong> Toujours besoin de modifier le code pour ajouter un cas</li>
+            <li><strong>Maintenabilité limitée :</strong> Toute la logique reste concentrée</li>
+            <li><strong>Testabilité :</strong> Difficile de tester chaque cas individuellement</li>
+            <li><strong>Extensibilité :</strong> Chaque nouveau type nécessite une modification</li>
+        </ul>
+    </div>
+
+    {{ include('demo/_comparison_table.html.twig') }}
+
+    <div class="alternatives-section">
+        <h3>💡 Conclusion</h3>
+        <p><strong>L'expression <code>match</code> est une amélioration par rapport aux <code>if/else</code> :</strong></p>
+        <ul>
+            <li>✅ Syntaxe plus moderne et lisible</li>
+            <li>✅ Expression (retourne une valeur)</li>
+            <li>✅ Exhaustivité garantie</li>
+            <li>⚠️ Mais toujours les mêmes problèmes fondamentaux que les if/else</li>
+        </ul>
+        
+        <p><strong>Le Design Pattern Strategy reste la meilleure solution pour :</strong></p>
+        <ul>
+            <li>🎯 Respecter les principes SOLID</li>
+            <li>🔧 Faciliter la maintenance et l'extension</li>
+            <li>🧪 Améliorer la testabilité</li>
+            <li>📈 Permettre l'évolution du code sans modification</li>
+            <li>⚡ S'intégrer parfaitement avec Symfony</li>
+        </ul>
+        
+        <p><strong>→ <a href="{{ path('app_demo_if') }}">Voir la version If/Else</a> | 
+        <a href="{{ path('app_demo_pattern') }}">Voir la version Strategy Pattern</a></strong></p>
+    </div>
+</div>
+{% endblock %}

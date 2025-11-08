@@ -1,0 +1,138 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo du Design Pattern Strategy{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>🌾 Démo du Design Pattern Strategy</h1>
+    
+    {{ include('demo/_navigation.html.twig') }}
+    
+    <div class="strategy-info">
+        <h3>📋 Informations sur les stratégies</h3>
+        <p><strong>Nombre de stratégies disponibles :</strong> {{ strategies_count }}</p>
+        <p>Chaque type de céréal utilise une stratégie d'analyse spécifique :</p>
+        <ul>
+            <li><strong>BléAnalyse</strong> : Analyse spécifique au blé</li>
+            <li><strong>OrgeAnalyse</strong> : Analyse spécifique à l'orge (avec fibres)</li>
+            <li><strong>TournesolAnalyse</strong> : Analyse spécifique au tournesol (avec vitamine E et acide oléique)</li>
+        </ul>
+        
+        <div style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #6c757d;">
+            <h4 style="color: #495057; margin-bottom: 15px;">📁 Code Source - Architecture Strategy Pattern</h4>
+            <p style="color: #6c757d; margin-bottom: 15px;">Consultez l'implémentation complète sur GitHub :</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;">
+                <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Strategy/AnalyseCerealInterface.php" 
+                   target="_blank" 
+                   style="color: #007bff; text-decoration: none; font-weight: bold; display: block; padding: 8px; background: white; border-radius: 4px; border: 1px solid #dee2e6;">
+                    🔗 Interface
+                </a>
+                <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Strategy/CerealAnalyseManager.php" 
+                   target="_blank" 
+                   style="color: #007bff; text-decoration: none; font-weight: bold; display: block; padding: 8px; background: white; border-radius: 4px; border: 1px solid #dee2e6;">
+                    🔗 Manager
+                </a>
+                <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Strategy/BleAnalyse.php" 
+                   target="_blank" 
+                   style="color: #007bff; text-decoration: none; font-weight: bold; display: block; padding: 8px; background: white; border-radius: 4px; border: 1px solid #dee2e6;">
+                    🔗 BléAnalyse
+                </a>
+                <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Strategy/OrgeAnalyse.php" 
+                   target="_blank" 
+                   style="color: #007bff; text-decoration: none; font-weight: bold; display: block; padding: 8px; background: white; border-radius: 4px; border: 1px solid #dee2e6;">
+                    🔗 OrgeAnalyse
+                </a>
+                <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/Strategy/TournesolAnalyse.php" 
+                   target="_blank" 
+                   style="color: #007bff; text-decoration: none; font-weight: bold; display: block; padding: 8px; background: white; border-radius: 4px; border: 1px solid #dee2e6;">
+                    🔗 TournesolAnalyse
+                </a>
+            </div>
+        </div>
+        
+        <div style="margin-top: 20px; padding: 20px; background: #e3f2fd; border-radius: 8px; border-left: 4px solid #2196f3;">
+            <h4 style="color: #1976d2; margin-bottom: 15px;">🔧 Attributs Symfony - Injection de Dépendances</h4>
+            <p style="color: #2c3e50; margin-bottom: 15px;">Ce projet utilise des attributs Symfony modernes pour l'injection automatique des stratégies :</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 15px;">
+                <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #bbdefb;">
+                    <h5 style="color: #1976d2; margin-bottom: 10px;">🏷️ #[AutoconfigureTag]</h5>
+                    <p style="color: #2c3e50; font-size: 0.9em; margin-bottom: 10px;">Sur l'interface <code>AnalyseCerealInterface</code> :</p>
+                    <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                        <code style="color: #d32f2f;">#[AutoconfigureTag('app.analyse_cereal')]</code><br>
+                        <code style="color: #2c3e50;">interface AnalyseCerealInterface</code>
+                    </div>
+                    <p style="color: #666; font-size: 0.8em; margin-top: 8px;">→ <strong>Marque automatiquement</strong> toutes les classes qui implémentent cette interface avec le tag <code>app.analyse_cereal</code></p>
+                </div>
+                
+                <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #bbdefb;">
+                    <h5 style="color: #1976d2; margin-bottom: 10px;">🔄 #[AutowireIterator]</h5>
+                    <p style="color: #2c3e50; font-size: 0.9em; margin-bottom: 10px;">Dans le constructeur du <code>CerealAnalyseManager</code> :</p>
+                    <div style="background: #f5f5f5; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                        <code style="color: #d32f2f;">#[AutowireIterator(tag: 'app.analyse_cereal')]</code><br>
+                        <code style="color: #2c3e50;">private iterable $strategies</code>
+                    </div>
+                    <p style="color: #666; font-size: 0.8em; margin-top: 8px;">→ <strong>Injecte automatiquement</strong> toutes les stratégies taguées dans un itérable</p>
+                </div>
+            </div>
+            
+            <div style="background: #fff3cd; padding: 15px; border-radius: 6px; border-left: 4px solid #ffc107;">
+                <h5 style="color: #856404; margin-bottom: 10px;">💡 Avantages de cette approche</h5>
+                <ul style="color: #856404; font-size: 0.9em; margin: 0; padding-left: 20px;">
+                    <li><strong>Configuration automatique</strong> : Plus besoin de configurer manuellement chaque stratégie</li>
+                    <li><strong>Extensibilité</strong> : Ajouter une nouvelle stratégie = créer une classe qui implémente l'interface</li>
+                    <li><strong>Découplage</strong> : Le manager ne connaît pas les stratégies concrètes</li>
+                    <li><strong>Performance</strong> : Symfony optimise l'injection de dépendances</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    {% for analysis in analyses %}
+        <div class="cereal-card">
+            <div class="cereal-name">{{ analysis.cereal }}</div>
+            
+            {% if analysis.success %}
+                <div class="analysis-result pattern">
+                    <strong>Résultat de l'analyse :</strong><br>
+                    {{ analysis.analyse }}
+                </div>
+            {% else %}
+                <div class="error">
+                    <strong>Erreur :</strong> {{ analysis.error }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="advantages-section">
+        <h3>✅ Avantages du Design Pattern Strategy</h3>
+        <ul>
+            <li><strong>Extensibilité :</strong> Facile d'ajouter de nouveaux types de céréales</li>
+            <li><strong>Maintenabilité :</strong> Chaque stratégie est isolée et indépendante</li>
+            <li><strong>Flexibilité :</strong> Le comportement peut être changé à l'exécution</li>
+            <li><strong>Principe ouvert/fermé :</strong> Ouvert à l'extension, fermé à la modification</li>
+            <li><strong>Testabilité :</strong> Chaque stratégie peut être testée individuellement</li>
+            <li><strong>Injection de dépendances :</strong> Symfony gère automatiquement l'injection</li>
+        </ul>
+    </div>
+
+    {{ include('demo/_comparison_table.html.twig') }}
+
+    <div class="conclusion-section">
+        <h3>💡 Conclusion</h3>
+        <p><strong>Le Design Pattern Strategy est la meilleure solution car il :</strong></p>
+        <ul>
+            <li>🎯 Respecte les principes SOLID</li>
+            <li>🔧 Facilite la maintenance et l'extension</li>
+            <li>🧪 Améliore la testabilité</li>
+            <li>📈 Permet l'évolution du code sans modification</li>
+            <li>⚡ S'intègre parfaitement avec Symfony et l'injection de dépendances</li>
+        </ul>
+        
+        <p><strong>→ <a href="{{ path('app_demo_if') }}">Voir la version If/Else</a> | 
+        <a href="{{ path('app_demo_match') }}">Voir la version Match</a></strong></p>
+    </div>
+</div>
+{% endblock %}

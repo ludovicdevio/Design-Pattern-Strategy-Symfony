@@ -1,0 +1,29 @@
+{# Menu de navigation moderne - Ordre logique : IF > MATCH > PATTERN #}
+<div class="navigation" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 20px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <div style="display: flex; justify-content: center; align-items: center; gap: 15px; flex-wrap: wrap;">
+        <a href="{{ path('app_home') }}" 
+           style="color: white; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.2); transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);"
+           onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+            🏠 Accueil
+        </a>
+        <a href="{{ path('app_demo_if') }}" 
+           style="color: white; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.2); transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);"
+           onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+            ❌ If/Else
+        </a>
+        <a href="{{ path('app_demo_match') }}" 
+           style="color: white; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.2); transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);"
+           onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+            🔄 Match
+        </a>
+        <a href="{{ path('app_demo_pattern') }}" 
+           style="color: white; text-decoration: none; font-weight: 600; padding: 12px 20px; border-radius: 25px; background: rgba(255,255,255,0.2); transition: all 0.3s ease; backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.3);"
+           onmouseover="this.style.background='rgba(255,255,255,0.3)'; this.style.transform='translateY(-2px)'"
+           onmouseout="this.style.background='rgba(255,255,255,0.2)'; this.style.transform='translateY(0)'">
+            ✅ Strategy
+        </a>
+    </div>
+</div>

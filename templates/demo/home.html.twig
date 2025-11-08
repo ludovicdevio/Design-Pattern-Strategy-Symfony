@@ -1,0 +1,271 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo du Design Pattern Strategy - Accueil{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    {{ include('demo/_navigation.html.twig') }}
+    
+    <div class="hero-section">
+        <h1 class="hero-title">🌾 Démo du Design Pattern Strategy</h1>
+        <p class="hero-subtitle">Découvrez l'évolution des approches de programmation : de la méthode traditionnelle au pattern Strategy</p>
+    </div>
+
+    <div class="demo-cards">
+        <div class="demo-card if">
+            <h3>❌ Approche If/Else</h3>
+            <p>La méthode traditionnelle avec des conditions if/else. Simple mais difficile à maintenir et étendre.</p>
+            <a href="{{ path('app_demo_if') }}" class="btn">Voir la démo If/Else</a>
+        </div>
+
+        <div class="demo-card match">
+            <h3>🔄 Expression Match (PHP 8+)</h3>
+            <p>Une amélioration moderne avec l'expression match de PHP 8+. Plus lisible mais toujours limitée.</p>
+            <a href="{{ path('app_demo_match') }}" class="btn">Voir la démo Match</a>
+        </div>
+
+        <div class="demo-card pattern">
+            <h3>✅ Design Pattern Strategy</h3>
+            <p>La solution professionnelle qui respecte les principes SOLID et facilite la maintenance.</p>
+            <a href="{{ path('app_demo_pattern') }}" class="btn">Voir la démo Strategy</a>
+        </div>
+    </div>
+
+    <div class="features-section">
+        <h2 style="text-align: center; color: #2c3e50; margin-bottom: 20px;">🎯 Pourquoi cette démo ?</h2>
+        <p style="text-align: center; color: #7f8c8d; font-size: 1.1em; margin-bottom: 30px;">
+            Cette démo illustre l'évolution des approches de programmation en comparant trois méthodes différentes 
+            pour résoudre le même problème : l'analyse de différents types de céréales.
+        </p>
+
+        <div style="background: #f8f9fa; padding: 25px; border-radius: 12px; margin: 30px 0; border: 2px solid #e9ecef;">
+            <h3 style="color: #2c3e50; text-align: center; margin-bottom: 25px;">🌾 Cas d'Usage Réaliste : Évolution Progressive</h3>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 25px;">
+                <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #17a2b8;">
+                    <h4 style="color: #17a2b8; margin-bottom: 15px;">📅 Phase 1 - Début</h4>
+                    <p style="color: #2c3e50; margin-bottom: 10px;"><strong>Besoin initial :</strong></p>
+                    <p style="color: #6c757d; font-size: 0.9em; margin-bottom: 15px;">"Je veux analyser le blé pour connaître ses propriétés nutritionnelles."</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                        <code>if ($cereal === 'ble') { return "Analyse du blé..."; }</code>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107;">
+                    <h4 style="color: #856404; margin-bottom: 15px;">📅 Phase 2 - Extension</h4>
+                    <p style="color: #2c3e50; margin-bottom: 10px;"><strong>Nouveau besoin :</strong></p>
+                    <p style="color: #6c757d; font-size: 0.9em; margin-bottom: 15px;">"Maintenant je veux aussi analyser l'orge."</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                        <code>if ($cereal === 'ble') { ... }<br>
+                        elseif ($cereal === 'orge') { ... }</code>
+                    </div>
+                </div>
+
+                <div style="background: white; padding: 20px; border-radius: 8px; border-left: 4px solid #fd7e14;">
+                    <h4 style="color: #fd7e14; margin-bottom: 15px;">📅 Phase 3 - Expansion</h4>
+                    <p style="color: #2c3e50; margin-bottom: 10px;"><strong>Besoin croissant :</strong></p>
+                    <p style="color: #6c757d; font-size: 0.9em; margin-bottom: 15px;">"J'ajoute le tournesol, puis le colza, puis le maïs..."</p>
+                    <div style="background: #f8f9fa; padding: 10px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                        <code>if ($cereal === 'ble') { ... }<br>
+                        elseif ($cereal === 'orge') { ... }<br>
+                        elseif ($cereal === 'tournesol') { ... }<br>
+                        elseif ($cereal === 'colza') { ... }<br>
+                        elseif ($cereal === 'mais') { ... }</code>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 20px;">
+                <h4 style="color: #856404; margin-bottom: 15px;">⚠️ Le Problème qui Émerge</h4>
+                <p style="color: #2c3e50; margin-bottom: 15px;">
+                    <strong>À chaque nouvelle céréale, il faut :</strong>
+                </p>
+                <ul style="color: #2c3e50; line-height: 1.6; margin-left: 20px;">
+                    <li>🔧 <strong>Modifier</strong> le code existant (risque de bugs)</li>
+                    <li>🧪 <strong>Retester</strong> toute la fonction (régression possible)</li>
+                    <li>📝 <strong>Mettre à jour</strong> la documentation</li>
+                    <li>👥 <strong>Former</strong> l'équipe sur les changements</li>
+                    <li>🚀 <strong>Redéployer</strong> l'application</li>
+                </ul>
+            </div>
+
+            <div style="background: #d4edda; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
+                <h4 style="color: #28a745; margin-bottom: 15px;">✅ La Solution Strategy Pattern</h4>
+                <p style="color: #2c3e50; margin-bottom: 15px;">
+                    <strong>Avec le Design Pattern Strategy :</strong>
+                </p>
+                <ul style="color: #2c3e50; line-height: 1.6; margin-left: 20px;">
+                    <li>➕ <strong>Créer</strong> une nouvelle classe (pas de modification)</li>
+                    <li>🔒 <strong>Code existant</strong> reste intact (pas de régression)</li>
+                    <li>⚡ <strong>Déploiement</strong> de la nouvelle fonctionnalité uniquement</li>
+                    <li>🎯 <strong>Test isolé</strong> de la nouvelle stratégie</li>
+                    <li>📈 <strong>Évolutivité</strong> infinie sans complexité</li>
+                </ul>
+            </div>
+
+            <div style="text-align: center; margin-top: 25px; padding: 20px; background: #e3f2fd; border-radius: 8px;">
+                <h4 style="color: #1976d2; margin-bottom: 15px;">💡 Exemple Concret d'Extension</h4>
+                <p style="color: #2c3e50; margin-bottom: 15px;">
+                    <strong>Ajouter l'analyse du "Maïs" :</strong>
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left;">
+                    <div>
+                        <h5 style="color: #e74c3c; margin-bottom: 10px;">❌ Approche Traditionnelle</h5>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                            <code style="color: #e74c3c;">
+                            // MODIFICATION du code existant<br>
+                            if ($cereal === 'ble') { ... }<br>
+                            elseif ($cereal === 'orge') { ... }<br>
+                            elseif ($cereal === 'tournesol') { ... }<br>
+                            <strong>elseif ($cereal === 'mais') { ... }</strong><br>
+                            // ↑ Risque de casser le code existant
+                            </code>
+                        </div>
+                    </div>
+                    <div>
+                        <h5 style="color: #28a745; margin-bottom: 10px;">✅ Strategy Pattern</h5>
+                        <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.8em;">
+                            <code style="color: #28a745;">
+                            // NOUVELLE classe, pas de modification<br>
+                            class MaisAnalyse implements AnalyseCerealInterface {<br>
+                            &nbsp;&nbsp;public function supports(string $cereal): bool {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return $cereal === 'mais';<br>
+                            &nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;public function analyse(string $cereal): string {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return "Analyse du maïs...";<br>
+                            &nbsp;&nbsp;}<br>
+                            }<br>
+                            // ↑ Code existant intact
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">📚</div>
+                <h4>Pédagogique</h4>
+                <p>Comprendre l'évolution des pratiques de programmation</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔍</div>
+                <h4>Comparatif</h4>
+                <p>Voir les avantages et inconvénients de chaque approche</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <h4>Pratique</h4>
+                <p>Exemples concrets avec du code fonctionnel</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <h4>Visuel</h4>
+                <p>Interface claire pour mieux comprendre les différences</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="advantages-section">
+        <h2 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">🔓 Principe Ouvert/Fermé (Open/Closed Principle)</h2>
+        
+        <div style="background: white; padding: 25px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #27ae60;">
+            <h3 style="color: #27ae60; margin-bottom: 15px;">📖 Définition</h3>
+            <p style="color: #2c3e50; line-height: 1.6; margin-bottom: 15px;">
+                <strong>Le principe Ouvert/Fermé</strong> stipule qu'une entité logicielle (classe, module, fonction) doit être :
+            </p>
+            <ul style="color: #2c3e50; line-height: 1.8; margin-left: 20px;">
+                <li><strong>🔓 Ouverte à l'extension</strong> : On peut ajouter de nouvelles fonctionnalités</li>
+                <li><strong>🔒 Fermée à la modification</strong> : On ne doit pas modifier le code existant</li>
+            </ul>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
+            <div style="background: #f8d7da; padding: 20px; border-radius: 8px; border-left: 4px solid #e74c3c;">
+                <h4 style="color: #e74c3c; margin-bottom: 15px;">❌ Violation du Principe</h4>
+                <p style="color: #2c3e50; margin-bottom: 10px;"><strong>Approches If/Else et Match :</strong></p>
+                <ul style="color: #2c3e50; line-height: 1.6; font-size: 0.9em;">
+                    <li>Pour ajouter un nouveau type de céréal, il faut <strong>modifier</strong> le code existant</li>
+                    <li>Risque d'introduire des bugs dans le code déjà testé</li>
+                    <li>Violation du principe "fermé à la modification"</li>
+                </ul>
+            </div>
+
+            <div style="background: #d4edda; padding: 20px; border-radius: 8px; border-left: 4px solid #27ae60;">
+                <h4 style="color: #27ae60; margin-bottom: 15px;">✅ Respect du Principe</h4>
+                <p style="color: #2c3e50; margin-bottom: 10px;"><strong>Design Pattern Strategy :</strong></p>
+                <ul style="color: #2c3e50; line-height: 1.6; font-size: 0.9em;">
+                    <li>Pour ajouter un nouveau type, on <strong>crée</strong> une nouvelle classe</li>
+                    <li>Aucune modification du code existant nécessaire</li>
+                    <li>Respect parfait du principe "ouvert/fermé"</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="background: #e3f2fd; padding: 25px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #2196f3;">
+            <h3 style="color: #2196f3; margin-bottom: 15px;">🎯 Implication dans les Principes SOLID</h3>
+            <p style="color: #2c3e50; line-height: 1.6; margin-bottom: 15px;">
+                Le principe Ouvert/Fermé est le <strong>deuxième principe SOLID</strong> et il est étroitement lié aux autres :
+            </p>
+            <ul style="color: #2c3e50; line-height: 1.8; margin-left: 20px;">
+                <li><strong>S - Single Responsibility</strong> : Chaque stratégie a une seule responsabilité</li>
+                <li><strong>O - Open/Closed</strong> : Ouvert à l'extension, fermé à la modification</li>
+                <li><strong>L - Liskov Substitution</strong> : Toutes les stratégies sont interchangeables</li>
+                <li><strong>I - Interface Segregation</strong> : Interface simple et focalisée</li>
+                <li><strong>D - Dependency Inversion</strong> : Dépendance sur l'abstraction, pas sur le concret</li>
+            </ul>
+        </div>
+
+        <div style="background: #fff3cd; padding: 25px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #ffc107;">
+            <h3 style="color: #856404; margin-bottom: 15px;">💡 Exemple Concret</h3>
+            <p style="color: #2c3e50; line-height: 1.6; margin-bottom: 15px;">
+                <strong>Scénario :</strong> Ajouter l'analyse du "Colza" à notre système
+            </p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div>
+                    <h4 style="color: #e74c3c; margin-bottom: 10px;">❌ Avec If/Else :</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.9em;">
+                        <code style="color: #e74c3c;">
+                        if ($cereal === 'ble') { ... }<br>
+                        elseif ($cereal === 'orge') { ... }<br>
+                        elseif ($cereal === 'tournesol') { ... }<br>
+                        <strong>elseif ($cereal === 'colza') { ... }</strong> ← MODIFICATION
+                        </code>
+                    </div>
+                </div>
+                <div>
+                    <h4 style="color: #27ae60; margin-bottom: 10px;">✅ Avec Strategy :</h4>
+                    <div style="background: #f8f9fa; padding: 15px; border-radius: 4px; font-family: monospace; font-size: 0.9em;">
+                        <code style="color: #27ae60;">
+                        class ColzaAnalyse implements AnalyseCerealInterface {<br>
+                        &nbsp;&nbsp;public function supports(string $cereal): bool { ... }<br>
+                        &nbsp;&nbsp;public function analyse(string $cereal): string { ... }<br>
+                        }<br>
+                        ← NOUVELLE CLASSE
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="advantages-section">
+        <h3>🚀 Commencez votre exploration</h3>
+        <p style="color: #2c3e50; margin-bottom: 20px;">
+            Suivez l'ordre logique de la démo pour comprendre l'évolution des approches :
+        </p>
+        <ol style="color: #2c3e50; line-height: 1.8;">
+            <li><strong>If/Else</strong> : Découvrez les limitations de l'approche traditionnelle</li>
+            <li><strong>Match</strong> : Voyez les améliorations apportées par PHP 8+</li>
+            <li><strong>Strategy Pattern</strong> : Comprenez pourquoi c'est la solution professionnelle</li>
+        </ol>
+        <div style="text-align: center; margin-top: 25px;">
+            <a href="{{ path('app_demo_if') }}" class="action-button">
+                Commencer la démo →
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

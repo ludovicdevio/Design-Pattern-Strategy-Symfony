@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Démo sans Design Pattern (If/Else){% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>❌ Démo SANS Design Pattern (If/Else)</h1>
+    
+    {{ include('demo/_navigation.html.twig') }}
+    
+    <div class="method-info">
+        <h3>⚠️ Approche traditionnelle avec If/Else</h3>
+        <p><strong>Méthode utilisée :</strong> {{ method }}</p>
+        <p>Cette approche utilise des conditions if/else pour déterminer quelle analyse appliquer :</p>
+        <div class="code-example">
+if (strtolower($cereal) === 'ble') {
+    return $this->analyserBle($cereal);
+} elseif (strtolower($cereal) === 'orge') {
+    return $this->analyserOrge($cereal);
+} elseif (strtolower($cereal) === 'tournesol') {
+    return $this->analyserTournesol($cereal);
+} else {
+    throw new InvalidArgumentException(...);
+}
+        </div>
+        
+        <div style="margin-top: 15px; padding: 15px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #6c757d;">
+            <h4 style="color: #495057; margin-bottom: 10px;">📁 Code Source</h4>
+            <p style="color: #6c757d; margin-bottom: 10px;">Consultez le code complet sur GitHub :</p>
+            <a href="https://github.com/yoanbernabeu/Design-Pattern-avec-Symfony---Strategy/blob/main/src/Service/If/CerealAnalyseIfService.php" 
+               target="_blank" 
+               style="color: #007bff; text-decoration: none; font-weight: bold;">
+                🔗 CerealAnalyseIfService.php
+            </a>
+        </div>
+    </div>
+
+    {% for analysis in analyses %}
+        <div class="cereal-card">
+            <div class="cereal-name">{{ analysis.cereal }}</div>
+            
+            {% if analysis.success %}
+                <div class="analysis-result if">
+                    <strong>Résultat de l'analyse :</strong><br>
+                    {{ analysis.analyse }}
+                </div>
+            {% else %}
+                <div class="error">
+                    <strong>Erreur :</strong> {{ analysis.error }}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <div class="problems-section">
+        <h3>❌ Problèmes de l'approche If/Else</h3>
+        <ul>
+            <li><strong>Violation du principe ouvert/fermé :</strong> Pour ajouter un nouveau type, il faut modifier le code existant</li>
+            <li><strong>Difficile à maintenir :</strong> Toute la logique est concentrée dans une seule méthode</li>
+            <li><strong>Risque d'erreurs :</strong> Facile d'oublier un cas ou de faire une erreur dans les conditions</li>
+            <li><strong>Pas extensible :</strong> Chaque nouveau type nécessite une modification du code principal</li>
+            <li><strong>Tests complexes :</strong> Difficile de tester chaque cas individuellement</li>
+            <li><strong>Syntaxe verbeuse :</strong> Beaucoup de répétition avec if/elseif/else</li>
+        </ul>
+    </div>
+
+    {{ include('demo/_comparison_table.html.twig') }}
+
+    <div class="alternatives-section">
+        <h3>💡 Solutions Alternatives</h3>
+        <p><strong>Pour améliorer cette approche, vous pouvez :</strong></p>
+        <ul>
+            <li>🔄 <strong>Utiliser l'expression Match :</strong> Syntaxe plus moderne (PHP 8+)</li>
+            <li>🎯 <strong>Implémenter le Design Pattern Strategy :</strong> Solution complète et professionnelle</li>
+        </ul>
+        
+        <p><strong>→ <a href="{{ path('app_demo_match') }}">Voir la version Match</a> | 
+        <a href="{{ path('app_demo_pattern') }}">Voir la version Strategy Pattern</a></strong></p>
+    </div>
+</div>
+{% endblock %}
